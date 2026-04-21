@@ -3,7 +3,7 @@
 //  DumbCapital — Main Site
 //  Reads posts/*.json and renders the full newspaper site.
 // ─────────────────────────────────────────────────────────────
-define('POSTS_DIR', __DIR__ . '/../posts/');
+define('POSTS_DIR', __DIR__ . '/posts/');
 
 function load_published(): array {
     $posts = [];
