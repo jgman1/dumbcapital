@@ -42,13 +42,16 @@ jobs:
           server:   ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
+          local-dir: ./public/
           server-dir: /public_html/
-          exclude: |
-            **/.git*
-            **/.github*
-            **/scripts*
-            **/README*
-            **/.gitkeep
-            **/node_modules*
+          dangerous-clean-slate: false
+
+      - name: Deploy posts via FTP to Webfundament
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server:   ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./posts/
+          server-dir: /public_html/posts/
           dangerous-clean-slate: false
