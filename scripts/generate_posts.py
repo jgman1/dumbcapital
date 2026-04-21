@@ -67,6 +67,13 @@ SECTIONS = [
         "focus":   "billion-dollar startup valuations, unicorn companies, down rounds, "
                    "valuation markdowns, unicorn failures, IPO disappointments",
     },
+    {
+        "key":     "opinion",
+        "label":   "Opinion",
+        "kickers": ["Hot Take", "The Verdict", "Unpopular Opinion", "Editorial"],
+        "focus":   "opinion and analysis on VC and M&A trends, commentary on bad industry practices, "
+                   "criticism of venture capital culture, private equity controversies, broader market commentary",
+    },
 ]
 
 
