@@ -206,7 +206,7 @@ $today = date('l, F j, Y');
   <a href="#pe">PE Corner</a>
   <a href="#unicorn">Unicorn Watch</a>
   <a href="#opinion">Opinion</a>
-  <a href="/admin/">Admin</a>
+
 </nav>
 
 <div class="container">
@@ -300,7 +300,7 @@ $today = date('l, F j, Y');
   Nothing published here constitutes financial, legal, or investment advice.</p>
   <div class="footer-nav">
     <a href="#vc">VC Deals</a><a href="#ma">M&amp;A Morgue</a><a href="#pe">PE Corner</a>
-    <a href="#unicorn">Unicorn Watch</a><a href="#opinion">Opinion</a><a href="/admin/">Admin</a>
+    <a href="#unicorn">Unicorn Watch</a><a href="#opinion">Opinion</a>
   </div>
 </footer>
 </body>
