@@ -196,7 +196,7 @@ Return ONLY a valid JSON array — no markdown, no preamble. Each element:
   "reason": "One sentence on why this is satirically rich"
 }}
 
-section must be one of: vc | ma | pe | unicorn
+section must be one of: vc | ma | pe | unicorn | opinion
 Only include stories scoring 5 or higher.
 Sort by score descending."""
 
@@ -403,3 +403,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
