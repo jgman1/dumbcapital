@@ -1,0 +1,18 @@
+{
+  "headline": "Anthropic Seeks $800B Valuation Despite Lacking Basic Safety Features",
+  "subheadline": "Company admits to Pentagon it cannot kill deployed AI systems, somehow this is not a dealbreaker for investors.",
+  "kicker": "Value Destruction Watch",
+  "section": "pe",
+  "tag": "unicorn",
+  "source_headline": "Anthropic's growing pains mount ahead of OpenAI showdown",
+  "source_url": "https://www.axios.com/2026/04/23/anthropic-openai-showdown",
+  "source_name": "Axios",
+  "dumb_rating": 4,
+  "dumb_rating_label": "No Kill Switch Energy",
+  "body_html": "<p>Anthropic is barreling toward an IPO at a valuation near $800 billion while simultaneously confessing to the Pentagon that its deployed AI systems lack kill switches. In what can only be described as a masterclass in separating valuation from reality, the company is experiencing \"growing pains\" at precisely the moment when institutional investors should be asking very basic questions about operational risk. Revenue has tripled to $30 billion this year, which is impressive until you remember that the company has apparently outsourced all safety considerations to hope.</p><p>The timing is exquisite. Anthropic is engaged in a competitive showdown with OpenAI while admitting it cannot, in any meaningful sense, shut down what it has built. This is the kind of asymmetric risk that typically sends institutional investors running. Instead, the market is pricing in an $800 billion valuation anyway. Either every LP in Silicon Valley has accepted that uncontrollable AI systems are now a feature of the business model, or they haven't actually read the due diligence memos.</p><p>The company's investor deck presumably contains slides about \"responsible AI\" and \"safety-first development.\" These presentations now carry the unmistakable tang of elaborate fiction. When your core product cannot be stopped once deployed, the bedrock of fiduciary governance has cracked. But sure, let's talk about that $30 billion revenue run-rate instead.</p><p>At $800 billion, Anthropic is being valued like a company that has solved AI alignment, not one that has publicly admitted it has no solution to the basic problem of turning off its own creations.</p>",
+  "glossary_term": "Kill Switch",
+  "glossary_definition": "A safety feature that responsible companies build but which apparently costs too much to implement when billion-dollar valuations are on the table.",
+  "published": true,
+  "date": "2026-04-23",
+  "slug": "anthropic-seeks-800b-valuation-despite-lacking-basic-sa"
+}
