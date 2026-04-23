@@ -43,7 +43,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./public/
-          server-dir: /public_html/
+          server-dir: ./
           dangerous-clean-slate: false
 
       - name: Deploy posts via FTP
@@ -53,5 +53,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./posts/
-          server-dir: public_html/posts/
+          server-dir: posts/
           dangerous-clean-slate: false
