@@ -43,36 +43,51 @@ SECTIONS = [
         "key":     "vc",
         "label":   "VC Deals",
         "kickers": ["VC Nonsense", "Money Well Burned", "Series WTF", "Burn Rate Report"],
-        "focus":   "venture capital funding rounds, Series A/B/C/D raises, startup valuations, "
-                   "pre-revenue companies raising enormous rounds, VC fund launches",
+        "focus":   "venture capital funding rounds only — Series A, B, C, D raises, VC fund launches, "
+                   "pre-revenue startups raising large rounds, seed rounds, venture debt. "
+                   "Must involve a VC firm investing in a startup. "
+                   "NOT for M&A deals, NOT for PE buyouts, NOT for public companies, NOT for opinion/commentary.",
     },
     {
         "key":     "ma",
         "label":   "M&A Morgue",
         "kickers": ["Deal of the Week", "M&A Morgue", "Synergy Watch", "Merger Theatre"],
-        "focus":   "mergers, acquisitions, corporate buyouts, strategic M&A deals, "
-                   "failed integrations, acqui-hires, cross-border deals",
+        "focus":   "mergers and acquisitions only — one company buying another, corporate takeovers, "
+                   "acqui-hires, strategic acquisitions, failed or collapsed deals, integration disasters. "
+                   "Must involve an actual announced or completed acquisition. "
+                   "NOT for VC funding rounds, NOT for PE buyouts (those go in PE Corner), NOT for IPOs.",
     },
     {
         "key":     "pe",
         "label":   "PE Corner",
         "kickers": ["PE Corner", "Value Destruction Watch", "Leverage Report", "Carried Interest"],
-        "focus":   "private equity buyouts, leveraged buyouts, roll-up strategies, "
-                   "portfolio company layoffs, PE fund returns, secondaries market",
+        "focus":   "private equity only — leveraged buyouts (LBOs), PE firm acquisitions, "
+                   "roll-up strategies, portfolio company layoffs or restructuring, PE fund returns, "
+                   "secondaries market, PE-backed company distress or bankruptcy. "
+                   "Must involve a named private equity firm. "
+                   "NOT for VC deals, NOT for strategic M&A between operating companies.",
     },
     {
         "key":     "unicorn",
         "label":   "Unicorn Watch",
         "kickers": ["Unicorn Watch", "Billion Dollar Club", "Valuation Theatre", "Imaginary Billions"],
-        "focus":   "billion-dollar startup valuations, unicorn companies, down rounds, "
-                   "valuation markdowns, unicorn failures, IPO disappointments",
+        "focus":   "unicorn and mega-valuation stories only — startups valued at $1B+ achieving or losing unicorn status, "
+                   "down rounds at previously high valuations, IPO disappointments vs private valuations, "
+                   "valuation markdowns by mutual funds or investors, unicorn failures or shutdowns. "
+                   "Must be about a STARTUP (not a public company, not a hedge fund, not a trading firm) "
+                   "and must center on its VALUATION being absurd, inflated, or collapsing. "
+                   "Jane Street, Citadel, hedge funds, trading firms do NOT belong here — they are not startups.",
     },
     {
         "key":     "opinion",
         "label":   "Opinion",
         "kickers": ["Hot Take", "The Verdict", "Unpopular Opinion", "Editorial"],
-        "focus":   "opinion and analysis on VC and M&A trends, commentary on bad industry practices, "
-                   "criticism of venture capital culture, private equity controversies, broader market commentary",
+        "focus":   "opinion, analysis, and commentary — broader trends in VC or M&A, "
+                   "criticism of industry culture or practices, stories about established firms or public figures "
+                   "that don't fit neatly into a deal category, market commentary, think-pieces. "
+                   "Use this section when a story is interesting and satirically rich but doesn't involve "
+                   "a specific funding round, acquisition, PE buyout, or unicorn valuation. "
+                   "Jane Street, Citadel, established hedge funds, and trading firms belong here if covered.",
     },
 ]
 
