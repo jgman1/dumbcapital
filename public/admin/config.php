@@ -11,7 +11,7 @@ define('ADMIN_PASSWORD', 'DumbCapital2025!');
 define('SESSION_SECRET', 'dc-x9k2mP7qR4nL8vB3jW6tY1sA5hF0eU');
 
 // Posts directory (relative to this file)
-define('POSTS_DIR', __DIR__ . '/../../posts/');
+define('POSTS_DIR', __DIR__ . '/../posts/');
 
 // Site title
 define('SITE_TITLE', 'DumbCapital');
