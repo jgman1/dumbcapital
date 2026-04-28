@@ -1,0 +1,18 @@
+{
+  "headline": "Cyber Command Vows to Buy AI From Anyone, Security Be Damned",
+  "subheadline": "Pentagon's chief AI officer commits to 'country-agnostic' black boxes, proving that national security strategy is just procurement with a flag pin.",
+  "kicker": "Synergy Watch",
+  "section": "ma",
+  "tag": "opinion",
+  "source_headline": "How Cyber Command is building its AI cyber war playbook",
+  "source_url": "https://www.axios.com/2026/04/28/cyber-command-ai-models-pentagon-anthropic",
+  "source_name": "Axios",
+  "dumb_rating": 4,
+  "dumb_rating_label": "Strategically Indifferent",
+  "body_html": "<p>U.S. Cyber Command has officially entered its \"we'll figure out the consequences later\" phase. The command's chief AI officer told Axios that the Pentagon will deploy \"the strongest possible AI models, regardless of politics and even country of origin.\" Translation: we're buying closed-source black boxes from anywhere willing to sell them, security clearances optional. Anthropic, America's homegrown frontier AI lab, had the audacity to fight the Pentagon on ethics—so now they're just going shopping elsewhere.</p><p>Here's where it gets delicious: Cyber Command is tasked with defending American networks from AI-powered attacks. The solution? Adopt AI models of unknown provenance, opaque training data, and potentially hostile alignment incentives. It's like hiring a locksmith recommended by the guy who keeps breaking into your house, then refusing to ask where he got his tools. Anthropic's models are \"pushing the frontier,\" but their \"fight with the Pentagon has complicated the roll\"—Pentagon-speak for \"they asked ethical questions and we don't have time for that.\"</p><p>The phrase \"regardless of politics and country of origin\" deserves a standing ovation. It's the kind of language that sounds strategic until you realize it means \"we have no strategy, just a credit card and optimism.\" No mention of security audits, vendor lock-in risks, or what happens when your cyber war playbook is written in code you can't verify. Just pure, weaponized procurement incompetence masquerading as pragmatism.</p><p>By next year, expect the headline: \"How Foreign State Actors Got Access to U.S. Cyber Command's AI Models—A Complete Surprise to Everyone Who Wasn't Paying Attention.\"</p>",
+  "glossary_term": "Country-Agnostic Sourcing",
+  "glossary_definition": "The practice of acquiring critical national security infrastructure from any vendor on Earth, provided they have the right PowerPoint deck and a willingness to not ask questions.",
+  "published": true,
+  "date": "2026-04-28",
+  "slug": "cyber-command-vows-to-buy-ai-from-anyone-security-be-da"
+}
