@@ -1,0 +1,18 @@
+{
+  "headline": "AI Startups: Built for Obsolescence, Funded Anyway",
+  "subheadline": "Founders have admitted their entire business model expires the moment a large language model learns to do their job.",
+  "kicker": "Unpopular Opinion",
+  "section": "opinion",
+  "tag": "vc",
+  "source_headline": "The 12-month window",
+  "source_url": "https://techcrunch.com/2026/04/19/the-12-month-window/",
+  "source_name": "Venture Capital News | TechCrunch",
+  "dumb_rating": 4,
+  "dumb_rating_label": "Preemptively Disrupted",
+  "body_html": "<p>A fascinating admission has emerged from the AI startup ecosystem: most of these companies exist primarily because foundation models haven't yet expanded into their category. In other words, they're counting down to irrelevance. It's as if founders have collectively agreed to build businesses with expiration dates printed on the packaging, then ask investors to fund the slow march toward that date.</p><p>The joke, as many have acknowledged, is on the venture capitalists. Here sits an entire cohort of startups whose value proposition boils down to: \"We do X, but only until OpenAI, Anthropic, or Meta decides X is worth 50 lines of code in their next release.\" The 12-month window—or however long until foundation models catch up—is not a runway. It's a countdown timer someone forgot to disable.</p><p>What makes this remarkable is the candor. Founders aren't pretending they've built defensible moats or sustainable competitive advantages. They're essentially admitting they're renting market share from the clock, hoping to exit before the alarm goes off. Investors, presumably awake and literate, continue writing checks anyway.</p><p>In a rational world, this would be called what it is: a bet on speed to acquisition before technological obsolescence. In venture capital, it's called due diligence.</p>",
+  "glossary_term": "Category expansion",
+  "glossary_definition": "The moment a foundation model learns to do your entire job, rendering your Series A investment a tax write-off with exceptional timing.",
+  "published": true,
+  "date": "2026-05-01",
+  "slug": "ai-startups-built-for-obsolescence-funded-anyway"
+}
