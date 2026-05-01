@@ -1,0 +1,18 @@
+{
+  "headline": "Big Tech Doubles Down on Life-or-Death Decisions, Ignores Warnings",
+  "subheadline": "Nvidia, Microsoft, and Amazon are expanding classified military AI systems despite multiple groups flagging the existential risks of automating lethal judgment calls.",
+  "kicker": "Unicorn Watch",
+  "section": "unicorn",
+  "tag": "opinion",
+  "source_headline": "Nvidia, Microsoft, Amazon expand classified military AI use",
+  "source_url": "https://financialpost.com/technology/tech-news/nvidia-microsoft-amazon-expand-military-ai-use",
+  "source_name": "Financial Post",
+  "dumb_rating": 4,
+  "dumb_rating_label": "Liability? Never Heard Of Her",
+  "body_html": "<p>In a move that perfectly encapsulates Silicon Valley's \"move fast and break things\" ethos applied to actual human lives, Nvidia, Microsoft, and Amazon are expanding classified military AI systems despite widespread warnings that deploying these tools in life-or-death scenarios is, well, potentially catastrophic. The three companies are apparently treating documented risk assessments the way a startup treats user privacy: as a minor checkbox to be acknowledged and immediately ignored.</p><p>What makes this particularly delicious is the transparency of the calculus. These firms know the risks. Multiple groups have explicitly highlighted them. But a classified defense contract—the kind that comes with government backing, recurring revenue, and minimal public scrutiny—is simply too juicy to let something like \"could accidentally authorize lethal force\" get in the way. The business model is sound: heads, we win the contract; tails, we blame the algorithm.</p><p>The expansion tells you everything about how these companies view risk management. It's not a genuine safety concern to be engineered away. It's a regulatory theater requirement—acknowledge the risk, deploy anyway, and hope the first major incident happens after your stock vests. As long as the Pentagon keeps writing checks and the work remains classified, no amount of \"several groups highlighting risks\" will meaningfully slow the gravy train.</p><p>In tech, we call this due diligence. In defense contracting, we call it Tuesday.</p>",
+  "glossary_term": "Classified Military AI Expansion",
+  "glossary_definition": "The practice of selling increasingly sophisticated algorithmic decision-making systems to the military while the actual failure modes remain secret enough that shareholders never have to price in the downside.",
+  "published": true,
+  "date": "2026-05-01",
+  "slug": "big-tech-doubles-down-on-life-or-death-decisions-ignore"
+}
