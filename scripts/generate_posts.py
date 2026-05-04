@@ -299,7 +299,7 @@ Source: {story['source']}
 Details: {story['snippet']}
 Why it's satirically rich: {story.get('_reason', 'Obvious red flags')}
 
-Write a sharp satirical article about this specific story. Base it ONLY on real facts from the headline and details above — do not invent numbers or deal terms. Editorialize aggressively.
+Write a sharp satirical article of 400-600 words about this specific story. Base it ONLY on real facts from the headline and details above — do not invent numbers or deal terms. Editorialize aggressively. Each paragraph should be 2-4 sentences. Depth and specificity beat brevity — give the reader something to actually think about.
 
 Return ONLY a valid JSON object. No markdown fences, no preamble.
 
@@ -314,8 +314,7 @@ Return ONLY a valid JSON object. No markdown fences, no preamble.
   "source_name": "{story['source']}",
   "dumb_rating": 4,
   "dumb_rating_label": "2-4 word funny label (e.g. 'Criminally Optimistic')",
-  "body_html": "<p>Para 1 — establish the deal and what's wrong with it.</p><p>Para 2 — dig into the numbers or history.</p><p>Para 3 — mock the press release language.</p><p>Para 4 — end with a killer dry kicker line.</p>",
-  "glossary_term": "One deal-speak term from this story",
+  "body_html": "<p>Para 1 — establish the deal, who is involved, and the headline number (valuation, deal size, fund size).</p><p>Para 2 — provide context: what does this company actually do, and what is their actual revenue or traction relative to the valuation?</p><p>Para 3 — dig into the history or pattern: have these players done this before? What happened?</p><p>Para 4 — mock the press release language and justification. Quote the buzzwords and translate them.</p><p>Para 5 — examine what could go wrong, or what the track record of similar deals suggests.</p><p>Para 6 — broader industry commentary: what does this deal say about the current state of VC/M&A?</p><p>Para 7 — end with a killer dry kicker line that lands the satirical point.</p>",  "glossary_term": "One deal-speak term from this story",
   "glossary_definition": "Your one-sentence satirical definition",
   "published": true
 }}"""
