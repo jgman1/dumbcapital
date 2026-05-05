@@ -264,7 +264,7 @@ Sort by score descending."""
 
 
 # ── STEP 2: WRITE — one article per section ───────────────────
-def claude_haiku(prompt: str, max_tokens: int = 950) -> str:
+def claude_haiku(prompt: str, max_tokens: int = 2000) -> str:
     body = json.dumps({
         "model":      "claude-haiku-4-5-20251001",
         "max_tokens": max_tokens,
