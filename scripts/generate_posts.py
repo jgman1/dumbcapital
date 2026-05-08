@@ -299,7 +299,7 @@ Source: {story['source']}
 Details: {story['snippet']}
 Why it's satirically rich: {story.get('_reason', 'Obvious red flags')}
 
-Write a {satirical} article of 400-600 words about this specific story. Make it ONLY on real facts from the headline and details above — do not invent numbers or deal terms. Editorialize aggressively. Each paragraph should be 2-4 sentences. Depth and specificity beat brevity — give the reader something to actually think about. IMPORTANT: Your entire response must be valid JSON. In the body_html field, avoid using straight apostrophes (') and double quotes (") inside text — use &apos; and &quot; instead.
+Write a satirical article of 400-600 words about this specific story. Make it ONLY on real facts from the headline and details above — do not invent numbers or deal terms. Editorialize aggressively. Each paragraph should be 2-4 sentences. Depth and specificity beat brevity — give the reader something to actually think about. IMPORTANT: Your entire response must be valid JSON. In the body_html field, avoid using straight apostrophes (') and double quotes (") inside text — use &apos; and &quot; instead.
 
 Return ONLY a valid JSON object. No markdown fences, no preamble.
 
