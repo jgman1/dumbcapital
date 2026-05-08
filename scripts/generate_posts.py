@@ -321,13 +321,19 @@ Write a satirical article of 400-600 words about this specific story. Make it ON
         raw = claude_haiku(prompt)
         raw = re.sub(r"^```(?:json)?\s*", "", raw)
         raw = re.sub(r"\s*```$", "", raw)
-        article = json.loads(raw)
+        raw = raw.strip()
+        try:
+            article = json.loads(raw)
+        except json.JSONDecodeError:
+            # Fix unescaped newlines/tabs inside JSON strings and retry
+            raw = re.sub(r'(?<!\\)\n', ' ', raw)
+            raw = re.sub(r'(?<!\\)\t', ' ', raw)
+            article = json.loads(raw)
         print(f"    ✓ [{section['key'].upper()}] {article.get('headline','')[:65]}...")
         return article
     except Exception as ex:
         print(f"    ✗ Failed writing for {section['label']}: {ex}")
         return None
-
 
 # ── SAVE POST ─────────────────────────────────────────────────
 def save_post(article: dict) -> None:
