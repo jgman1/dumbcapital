@@ -1,8 +1,6 @@
 name: Generate Posts & Deploy to Webfundament
 
 on:
-  schedule:
-    - cron: "0 13 * * 2,5"
   workflow_dispatch:
 
 permissions:
