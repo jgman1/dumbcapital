@@ -325,10 +325,19 @@ Write a satirical article of 400-600 words about this specific story. Make it ON
         try:
             article = json.loads(raw)
         except json.JSONDecodeError:
-            # Fix unescaped newlines/tabs inside JSON strings and retry
-            raw = re.sub(r'(?<!\\)\n', ' ', raw)
-            raw = re.sub(r'(?<!\\)\t', ' ', raw)
-            article = json.loads(raw)
+            # Try to extract just the JSON object if there's surrounding text
+            match = re.search(r'\{.*\}', raw, re.DOTALL)
+            if match:
+                try:
+                    article = json.loads(match.group())
+                except json.JSONDecodeError:
+                    # Replace smart quotes and clean up
+                    cleaned = match.group().replace('\u201c', '\\"').replace('\u201d', '\\"')
+                    cleaned = cleaned.replace('\u2018', "'").replace('\u2019', "'")
+                    cleaned = re.sub(r'(?<!\\)\n', ' ', cleaned)
+                    article = json.loads(cleaned)
+            else:
+                raise
         print(f"    ✓ [{section['key'].upper()}] {article.get('headline','')[:65]}...")
         return article
     except Exception as ex:
