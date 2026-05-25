@@ -15,6 +15,10 @@ Cost: ~$0.05-0.15/week (Claude Haiku)
 """
 
 import os, json, re, time, html, hashlib
+try:
+    from json_repair import repair_json
+except ImportError:
+    repair_json = None
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -167,6 +171,60 @@ def filter_new_stories(all_stories: list[dict], seen_cache: set) -> list[dict]:
     return new
 
 
+# ── JSON RECOVERY HELPER ──────────────────────────────────────
+def _safe_json_loads(raw: str):
+    """
+    Attempt to parse JSON from Claude's raw output with progressive fallbacks.
+    Handles: truncation, unescaped quotes, smart quotes, literal newlines in
+    strings, stray text before/after the JSON object or array.
+    """
+    # 1. Direct parse (fastest, handles well-formed output)
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        pass
+
+    # 2. json_repair — handles truncated JSON, missing closing brackets, etc.
+    if repair_json:
+        try:
+            repaired = repair_json(raw, return_objects=True)
+            if repaired is not None and repaired != "" and repaired != [] and repaired != {}:
+                return repaired
+        except Exception:
+            pass
+
+    # 3. Extract the outermost JSON object or array and retry
+    for pattern in (r'\[.*\]', r'\{.*\}'):
+        match = re.search(pattern, raw, re.DOTALL)
+        if match:
+            candidate = match.group()
+            try:
+                return json.loads(candidate)
+            except json.JSONDecodeError:
+                pass
+            # 4. Sanitise common Claude output issues inside the extracted block
+            cleaned = candidate
+            cleaned = cleaned.replace('\u201c', '"').replace('\u201d', '"')   # smart double quotes
+            cleaned = cleaned.replace('\u2018', "'").replace('\u2019', "'")   # smart single quotes
+            cleaned = re.sub(r'(?<!\\)\n', ' ', cleaned)                      # literal newlines in strings
+            cleaned = re.sub(r'(?<!\\)\r', '', cleaned)                       # carriage returns
+            cleaned = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f]', '', cleaned)  # stray control chars
+            try:
+                return json.loads(cleaned)
+            except json.JSONDecodeError:
+                pass
+            # 5. Last resort: json_repair on the sanitised candidate
+            if repair_json:
+                try:
+                    repaired = repair_json(cleaned, return_objects=True)
+                    if repaired is not None and repaired != "" and repaired != [] and repaired != {}:
+                        return repaired
+                except Exception:
+                    pass
+
+    raise json.JSONDecodeError("All JSON recovery attempts failed", raw, 0)
+
+
 # ── STEP 1: CURATE — score and rank all new stories ───────────
 def curate_stories(new_stories: list[dict]) -> list[dict]:
     """
@@ -218,7 +276,7 @@ Sort by score descending."""
     try:
         body = json.dumps({
             "model":      "claude-haiku-4-5-20251001",
-            "max_tokens": 1500,
+            "max_tokens": 2000,
             "messages":   [{"role": "user", "content": prompt}],
         }).encode()
         req = urllib.request.Request(
@@ -236,7 +294,7 @@ Sort by score descending."""
         raw = data["content"][0]["text"].strip()
         raw = re.sub(r"^```(?:json)?\s*", "", raw)
         raw = re.sub(r"\s*```$", "", raw)
-        scored = json.loads(raw)
+        scored = _safe_json_loads(raw)
 
         # Attach scores and sections back to story dicts
         ranked = []
@@ -312,37 +370,26 @@ Write a satirical article of 400-600 words about this specific story. Make it ON
   "source_name": "{story['source']}",
   "dumb_rating": 4,
   "dumb_rating_label": "2-4 word funny label (e.g. 'Criminally Optimistic')",
-  "body_html": "<p>Para 1 — establish the deal, who is involved, and the headline number (valuation, deal size, fund size).</p><p>Para 2 — provide context: what does this company actually do, and what is their actual revenue or traction relative to the valuation?</p><p>Para 3 — dig into the history or pattern: have these players done this before? What happened?</p><p>Para 4 — mock the press release language and justification. Quote the buzzwords and translate them.</p><p>Para 5 — examine what could go wrong, or what the track record of similar deals suggests.</p><p>Para 6 — broader industry commentary: what does this deal say about the current state of VC/M&A?</p><p>Para 7 — end with a killer dry kicker line that lands the satirical point.</p>",  "glossary_term": "One deal-speak term from this story",
+  "body_html": "<p>Para 1 — establish the deal, who is involved, and the headline number (valuation, deal size, fund size).</p><p>Para 2 — provide context: what does this company actually do, and what is their actual revenue or traction relative to the valuation?</p><p>Para 3 — dig into the history or pattern: have these players done this before? What happened?</p><p>Para 4 — mock the press release language and justification. Quote the buzzwords and translate them.</p><p>Para 5 — examine what could go wrong, or what the track record of similar deals suggests.</p><p>Para 6 — broader industry commentary: what does this deal say about the current state of VC/M&A?</p><p>Para 7 — end with a killer dry kicker line that lands the satirical point.</p>",
+  "glossary_term": "One deal-speak term from this story",
   "glossary_definition": "Your one-sentence satirical definition",
   "published": true
 }}"""
 
-    try:
-        raw = claude_haiku(prompt)
-        raw = re.sub(r"^```(?:json)?\s*", "", raw)
-        raw = re.sub(r"\s*```$", "", raw)
-        raw = raw.strip()
+    for attempt in range(1, 4):  # up to 3 attempts
         try:
-            article = json.loads(raw)
-        except json.JSONDecodeError:
-            # Try to extract just the JSON object if there's surrounding text
-            match = re.search(r'\{.*\}', raw, re.DOTALL)
-            if match:
-                try:
-                    article = json.loads(match.group())
-                except json.JSONDecodeError:
-                    # Replace smart quotes and clean up
-                    cleaned = match.group().replace('\u201c', '\\"').replace('\u201d', '\\"')
-                    cleaned = cleaned.replace('\u2018', "'").replace('\u2019', "'")
-                    cleaned = re.sub(r'(?<!\\)\n', ' ', cleaned)
-                    article = json.loads(cleaned)
-            else:
-                raise
-        print(f"    ✓ [{section['key'].upper()}] {article.get('headline','')[:65]}...")
-        return article
-    except Exception as ex:
-        print(f"    ✗ Failed writing for {section['label']}: {ex}")
-        return None
+            raw = claude_haiku(prompt, max_tokens=2500)
+            raw = re.sub(r"^```(?:json)?\s*", "", raw)
+            raw = re.sub(r"\s*```$", "", raw)
+            raw = raw.strip()
+            article = _safe_json_loads(raw)
+            print(f"    ✓ [{section['key'].upper()}] {article.get('headline','')[:65]}...")
+            return article
+        except Exception as ex:
+            print(f"    ✗ Attempt {attempt}/3 failed for {section['label']}: {ex}")
+            if attempt < 3:
+                time.sleep(2)
+    return None
 
 # ── SAVE POST ─────────────────────────────────────────────────
 def save_post(article: dict) -> None:
