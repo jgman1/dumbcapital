@@ -39,21 +39,13 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         run: python scripts/tweet_posts.py
 
-      - name: Deploy site files via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server:   ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./public/
-          server-dir: ./
-          dangerous-clean-slate: false
-      - name: Deploy posts via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server:   ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./posts/
-          server-dir: posts/
-          dangerous-clean-slate: false
+      - name: Deploy via cPanel Git
+        run: |
+          curl -k -s "https://srv.dioartis.com:2083/execute/VersionControl/update" \
+            -u "dumbcapi:${{ secrets.CPANEL_PASSWORD }}" \
+            -d "repository=/home/dumbcapi/repositories/dumbcapital" \
+            -d "branch=main"
+          sleep 10
+          curl -k -s "https://srv.dioartis.com:2083/execute/VersionControl/deploy" \
+            -u "dumbcapi:${{ secrets.CPANEL_PASSWORD }}" \
+            -d "repository=/home/dumbcapi/repositories/dumbcapital"
