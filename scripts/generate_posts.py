@@ -245,6 +245,12 @@ def curate_stories(new_stories: list[dict]) -> list[dict]:
         for i, s in enumerate(stories_to_score)
     )
 
+    # Build section guidance from SECTIONS definitions
+    section_guide = "\n".join(
+        f"  {s['key']}: {s['focus']}"
+        for s in SECTIONS
+    )
+
     prompt = f"""You are the editorial director of DumbCapital, a satirical North American VC and M&A news site. Your readers are smart, financially literate people who enjoy seeing bad deals and delusional founders called out with wit and precision.
 
 Here are {len(stories_to_score)} fresh news stories. Your job is to score and categorise each one.
@@ -261,6 +267,9 @@ SCORING CRITERIA — score each story 1-10 for satirical potential based on:
 - High reader relevance: affects real companies, real money, North American focus
 - Stories where the gap between the spin and the reality is widest
 
+SECTION DEFINITIONS — assign each story to the correct section based on these strict definitions:
+{section_guide}
+
 Return ONLY a valid JSON array — no markdown, no preamble. Each element:
 {{
   "index": 1,
@@ -270,6 +279,11 @@ Return ONLY a valid JSON array — no markdown, no preamble. Each element:
 }}
 
 section must be one of: vc | ma | pe | unicorn | opinion
+Be strict about section assignment — a story about a government official leaving does not belong in ma or pe.
+A story only belongs in vc if it involves a VC firm investing in a startup.
+A story only belongs in ma if it involves one company acquiring another.
+A story only belongs in pe if it involves a named private equity firm.
+When in doubt, use opinion.
 Only include stories scoring 5 or higher.
 Sort by score descending."""
 
@@ -477,4 +491,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
