@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/dumbcapi/public_html/
+    - /bin/cp -r public/. $DEPLOYPATH
+    - /bin/cp -r posts/. $DEPLOYPATH/posts/
