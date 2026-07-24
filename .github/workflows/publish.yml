@@ -1,6 +1,8 @@
 name: Generate Posts & Deploy to Webfundament
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '15 16 * * 2,5'  # Tuesdays and Fridays at 12:15pm EST (16:15 UTC)
 permissions:
   contents: write
 jobs:
