@@ -23,7 +23,6 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/generate_posts.py
-
       - name: Commit new posts and seen cache
         run: |
           git config user.name  "DumbCapital Bot"
@@ -32,7 +31,6 @@ jobs:
           git diff --staged --quiet || git commit -m "📰 Auto-post $(date +'%Y-%m-%d')"
           git pull --rebase origin main
           git push
-
       - name: Tweet new articles
         env:
           TWITTER_API_KEY:             ${{ secrets.TWITTER_API_KEY }}
@@ -40,19 +38,25 @@ jobs:
           TWITTER_ACCESS_TOKEN:        ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         run: python scripts/tweet_posts.py
-
       - name: Deploy via cPanel Git
         run: |
           echo "Pulling latest from GitHub..."
-          curl -k -f -s -S \
+          UPDATE=$(curl -k -s -w "\nHTTP_STATUS:%{http_code}" \
             -H "Authorization: cpanel dumbcapi:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://srv.dioartis.com:2083/execute/VersionControl/update?repository=/home/dumbcapi/repositories/dumbcapital&branch=main"
+            -X POST \
+            -d "repository=/home/dumbcapi/repositories/dumbcapital" \
+            -d "branch=main" \
+            "https://srv.dioartis.com:2083/execute/VersionControl/update")
+          echo "$UPDATE"
           echo ""
           echo "Waiting for pull to complete..."
-          sleep 15
+          sleep 20
           echo "Deploying HEAD commit..."
-          curl -k -f -s -S \
+          DEPLOY=$(curl -k -s -w "\nHTTP_STATUS:%{http_code}" \
             -H "Authorization: cpanel dumbcapi:${{ secrets.CPANEL_API_TOKEN }}" \
-            "https://srv.dioartis.com:2083/execute/VersionControl/deploy?repository=/home/dumbcapi/repositories/dumbcapital"
+            -X POST \
+            -d "repository=/home/dumbcapi/repositories/dumbcapital" \
+            "https://srv.dioartis.com:2083/execute/VersionControl/deploy")
+          echo "$DEPLOY"
           echo ""
-          echo "Deploy complete."
+          echo "Deploy step complete."
