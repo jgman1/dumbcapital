@@ -44,16 +44,15 @@ jobs:
       - name: Deploy via cPanel Git
         run: |
           echo "Pulling latest from GitHub..."
-          curl -k -f "https://srv.dioartis.com:2083/execute/VersionControl/update" \
-            -u "dumbcapi:${{ secrets.CPANEL_PASSWORD }}" \
-            -d "repository=/home/dumbcapi/repositories/dumbcapital" \
-            -d "branch=main"
+          curl -k -f -s -S \
+            -H "Authorization: cpanel dumbcapi:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://srv.dioartis.com:2083/execute/VersionControl/update?repository=/home/dumbcapi/repositories/dumbcapital&branch=main"
           echo ""
           echo "Waiting for pull to complete..."
           sleep 15
           echo "Deploying HEAD commit..."
-          curl -k -f "https://srv.dioartis.com:2083/execute/VersionControl/deploy" \
-            -u "dumbcapi:${{ secrets.CPANEL_PASSWORD }}" \
-            -d "repository=/home/dumbcapi/repositories/dumbcapital"
+          curl -k -f -s -S \
+            -H "Authorization: cpanel dumbcapi:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://srv.dioartis.com:2083/execute/VersionControl/deploy?repository=/home/dumbcapi/repositories/dumbcapital"
           echo ""
           echo "Deploy complete."
