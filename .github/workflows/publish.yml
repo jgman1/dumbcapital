@@ -43,7 +43,7 @@ jobs:
           echo "Pulling latest from GitHub..."
           UPDATE=$(curl -k -s -w "\nHTTP_STATUS:%{http_code}" \
             -H "Authorization: cpanel dumbcapi:${{ secrets.CPANEL_API_TOKEN }}" \
-            -X POST \
+            -G \
             -d "repository_root=/home/dumbcapi/repositories/dumbcapital" \
             -d "branch=main" \
             "https://srv.dioartis.com:2083/execute/VersionControl/update")
@@ -54,9 +54,9 @@ jobs:
           echo "Deploying HEAD commit..."
           DEPLOY=$(curl -k -s -w "\nHTTP_STATUS:%{http_code}" \
             -H "Authorization: cpanel dumbcapi:${{ secrets.CPANEL_API_TOKEN }}" \
-            -X POST \
+            -G \
             -d "repository_root=/home/dumbcapi/repositories/dumbcapital" \
-            "https://srv.dioartis.com:2083/execute/VersionControl/create_deployment")
+            "https://srv.dioartis.com:2083/execute/VersionControlDeployment/create")
           echo "$DEPLOY"
           echo ""
           echo "Deploy step complete."
