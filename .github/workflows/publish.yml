@@ -44,7 +44,7 @@ jobs:
           UPDATE=$(curl -k -s -w "\nHTTP_STATUS:%{http_code}" \
             -H "Authorization: cpanel dumbcapi:${{ secrets.CPANEL_API_TOKEN }}" \
             -X POST \
-            -d "repository=/home/dumbcapi/repositories/dumbcapital" \
+            -d "repository_root=/home/dumbcapi/repositories/dumbcapital" \
             -d "branch=main" \
             "https://srv.dioartis.com:2083/execute/VersionControl/update")
           echo "$UPDATE"
@@ -55,8 +55,8 @@ jobs:
           DEPLOY=$(curl -k -s -w "\nHTTP_STATUS:%{http_code}" \
             -H "Authorization: cpanel dumbcapi:${{ secrets.CPANEL_API_TOKEN }}" \
             -X POST \
-            -d "repository=/home/dumbcapi/repositories/dumbcapital" \
-            "https://srv.dioartis.com:2083/execute/VersionControl/deploy")
+            -d "repository_root=/home/dumbcapi/repositories/dumbcapital" \
+            "https://srv.dioartis.com:2083/execute/VersionControl/create_deployment")
           echo "$DEPLOY"
           echo ""
           echo "Deploy step complete."
